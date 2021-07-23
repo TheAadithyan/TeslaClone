@@ -2,20 +2,30 @@ import React from 'react'
 import { ImageBackground, StyleSheet, View, Text, Dimensions } from 'react-native'
 import StyledButton from './StyledButton'
 
-const CarItem = () => {
+const CarItem = (props) => {
+
+    const { name, tagline, taglineCta, image } =props; 
 
     return (
         <View style={styles.carContainer}>
             <ImageBackground
-                source={require('../assets/images/ModelX.jpeg')}
+                source={image}
                 style={styles.image}
             />
             <View style={styles.titles}>
-                <Text style={styles.title}>Model S</Text>
-                <Text style={styles.subtitle}>Starting at $69,000</Text>
+                <Text style={styles.title}>{name}</Text>
+                <Text style={styles.subtitle}>
+                    {tagline}
+                    <Text style={styles.taglineCta}>
+                        {taglineCta}
+                    </Text>
+                </Text>
             </View>
+
+            <View style={styles.buttonsContainer}>
             <StyledButton type="primary" content='Custom Order'/>
             <StyledButton type="secondary" content='existing inventory'/>
+            </View>
         </View>
     )
 }
@@ -36,7 +46,7 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     },
     subtitle: {
-        fontSize: 19,
+        fontSize: 16,
         color: '#5c5d61'
     },
     subtitleCTA: {
@@ -52,6 +62,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 50,
         width: '100%',
+    },
+    taglineCta: {
+        textDecorationLine: 'underline'
     }
 })
 
