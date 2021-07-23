@@ -3,8 +3,7 @@ import { ImageBackground, StyleSheet, View, Text, Dimensions } from 'react-nativ
 import StyledButton from './StyledButton'
 
 const CarItem = (props) => {
-
-    const { name, tagline, taglineCta, image } =props; 
+    const { name, tagline, taglineCTA, image } = props.car;
 
     return (
         <View style={styles.carContainer}>
@@ -16,15 +15,23 @@ const CarItem = (props) => {
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.subtitle}>
                     {tagline}
-                    <Text style={styles.taglineCta}>
-                        {taglineCta}
+                    {' '}
+                    <Text style={styles.subtitleCTA}>
+                        {taglineCTA}
                     </Text>
                 </Text>
             </View>
-
             <View style={styles.buttonsContainer}>
-            <StyledButton type="primary" content='Custom Order'/>
-            <StyledButton type="secondary" content='existing inventory'/>
+                <StyledButton
+                    type="primary"
+                    content="Custom Order"
+                    onPress={() => console.warn("Custom Orderpressed")}
+                />
+                <StyledButton
+                    type="secondary"
+                    content="Existing Inventory"
+                    onPress={() => console.warn("Existing Inventory pressed")}
+                />
             </View>
         </View>
     )
@@ -33,7 +40,7 @@ const CarItem = (props) => {
 const styles = StyleSheet.create({
     carContainer: {
         width: '100%',
-        height: '100%',
+        height: Dimensions.get('window').height
     },
     titles: {
         marginTop: '30%',
@@ -42,12 +49,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        color: '#393c41',
         fontWeight: '500'
     },
     subtitle: {
         fontSize: 16,
-        color: '#5c5d61'
+        color: '#5c5e62'
     },
     subtitleCTA: {
         textDecorationLine: 'underline',
@@ -62,9 +68,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 50,
         width: '100%',
-    },
-    taglineCta: {
-        textDecorationLine: 'underline'
     }
 })
 
